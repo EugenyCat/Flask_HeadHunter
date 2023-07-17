@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <br>
+        <p>Input candidate name for searching</p>
+        <form action='/candidate/search/' method='post'>
+            <input type='text' name='search_candidate_name'>
+            <input type='submit' value='Search'>
+        </form>
+        <br>
+        <h1>All candidates: </h1>
+        {% for candidate in candidates %}
+        <div>
+            <p>Candidate name: {{candidate.name}}<br>
+            Candidate position: {{candidate.position}}<br>
+            Skills: {{candidate.skills}}</p>
+        </div>
+        {% endfor %}
+    </body>
+{% endblock %}

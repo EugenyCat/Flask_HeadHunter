@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <div class="container">
+            <div class="authorization">
+
+                <div class="authorization-header">
+                    <h1>Authorization</h1>
+                </div>
+
+                <div class="authorization-body">
+
+                    <form action='/login/' method='post'>
+                        {{ form.csrf_token }}
+
+                        {% for item in input %}
+                            <div class="authorization-input-display">
+                                {% if item == 'remember_me' %}
+                                    <div class="authorization-rememberme-display">
+                                        <div class="authorization-input">
+                                             {{form.get_form(item)}}
+                                        </div>
+
+                                        <div class="authorization-input-title">
+                                            Remember me
+                                        </div>
+                                    </div>
+
+                                {% else %}
+                                    <div class="authorization-input-title">
+                                        Input your {{item}}:
+                                    </div>
+
+                                    <div class="authorization-input">
+                                        {{form.get_form(item)}}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="flash-messages-authorization">
+                                {% with messages = get_flashed_messages(True, category_filter=["login_error_"+item]) %}
+                                    {% if messages %}
+                                        <ul>
+                                            {% for cat, msg in messages %}
+                                                <li class="authorization_error">{{msg}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+
+                        {% endfor %}
+                        <div class="authorization-button">
+                            <button class="authorization-button-link" type="submit" value="Enter">Enter</button>
+                        </div>
+
+                    </form>
+
+                    <div class="registration-button">
+                        <form action='/login/registration' method='get'>
+                            <button class="registration-button-link" value="Registration">Registration</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

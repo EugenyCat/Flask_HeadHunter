@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        {% if candidates == [] %}
+            <h1>Candidates not found</h1>
+        {% else %}
+            <h1>Founded candidates {{len_candidates}}:</h1>
+            {% for candidate in candidates%}
+                <p>Candidate name: {{candidate.name}}<br>
+                Candidate's position: {{candidate.position}}<br>
+                Candidate's skills: {{candidate.skills}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}}

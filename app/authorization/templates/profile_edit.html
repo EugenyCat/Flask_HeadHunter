@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        {{ form_additional.csrf_token }}
+        {{ form_main.csrf_token }}
+        <div class="container">
+            <div class="buton-return">
+                <a href="{{session['url']}}"><i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <div class="user-profile">
+
+
+                <div class="edit-profile-header">
+                    <h1>Edit profile</h1>
+                </div>
+
+                <form action="{{url_for('authorization_blueprint.upload')}}" method="POST" enctype="multipart/form-data">
+
+                <div class="user-profile-body">
+                    <div class="user-photo">
+                        <img height=300px width=300px src="{{current_user.get_avatar()}}">
+                        <p><b>Change profile photo:</b>
+                        <p><input type="file" lang="en" name="profile_photo" accept="image/png, image/jpeg">
+                    </div>
+
+                    <div class="user-person-data-display">
+                        <div class="user-person-data">
+
+                                Input your name
+                                <div class="edit-profile-input">
+                                    {{form_main.name(value=current_user.get_name())}}
+                                </div>
+
+                                Input your second name
+                                <div class="edit-profile-input">
+                                    {{form_additional.second_name(value=current_user.get_second_name() or '')}}
+                                </div>
+
+                                {% for item in add_inputs %}
+                                    Input your {{item.replace('_', ' ')}}
+                                    <div class="edit-profile-input">
+                                        {{form_additional.get_form(item)(value=current_user.get_person_data()[item] or '')}}
+                                    </div>
+                                {% endfor %}
+
+                                <div class="user-profile-enter">
+                                    <button class="user-profile-enter-link" type="submit" value="Enter">Enter</button>
+                                </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

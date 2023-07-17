@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+          {% if title %}
+          <title>{{ title }}</title>
+          {% else %}
+          <title>Welcome to FlaskTemplate!</title>
+          {% endif %}
+           <script src="https://kit.fontawesome.com/b8991598b2.js"></script>
+           <link rel="stylesheet" type="text/css" href='/static/css/style.css' />
+           <link href="https://fonts.googleapis.com/css?
+                    family=Kaushan+Script|Motserrat:400,700&amp;subset=cyrillic-ext"
+                    rel="stylesheet">
+    </head>
+
+    <body>
+
+
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <div class="header__logo">HeadHunter</div>
+                        <nav class="nav">
+                            <a class="nav-link" href="/">Main</a></li>
+                            <a class="nav-link" href={{url_for('joboffer_blueprint.all_resumes')}}>Resumes</a>
+                            <a class="nav-link" href="/offers/jobs/">Jobs</a>
+                            {% if current_user.is_authenticated %}
+                                <a class="nav-link" href={{url_for('authorization_blueprint.profile')}}>My profile</a></li>
+                            {% else %}
+                                <a class="nav-link" href='/login'>Authorization</a>
+                            {% endif %}
+                        </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="intro">
+            <div class="container"></div>
+        </div>
+
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

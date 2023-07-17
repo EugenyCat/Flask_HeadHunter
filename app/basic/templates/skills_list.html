@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <p>Input skill for searching</p>
+    <form action='/skills/search/' method='post'>
+        <input type='text' name='search_skill'>
+        <input type='submit' value='Search'>
+    </form><br>
+    <div>
+        {% if skills == {} %}
+            <h1>Skills not found</h1>
+        {% else %}
+            <h1>Skills list:</h1>
+            {% for skill in skills%}
+                <p>{{skill}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

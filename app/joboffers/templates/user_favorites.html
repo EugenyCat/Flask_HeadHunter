@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <div class="container">
+            <div class="user-favorites">
+
+                <div class="buton-return-favorites">
+                    <a href="{{session['url']}}"><i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                {% if resumes == [] or resumes == None%}
+                    <div class="empty-favorites">
+                        <h2>Empty</h2>
+                    </div>
+
+                {% else %}
+                    {% for resume in resumes %}
+                    <div class="user-favorite-resume-block">
+                        <div class="user-favorite-resume-block-header">
+                            <div class="">
+                                <a class="link-resume" href="{{url_for('joboffer_blueprint.user_offer', id=resume.offer_id)}}">{{resume.title}}</a>
+                            </div>
+
+                            <form method='post'>
+                                <button name="delete" value="{{resume.offer_id}}" class="delete-favorite">delete</button>
+                            </form>
+                        </div>
+
+                        <div class="resume-description">
+                            {{resume.description[:30]}}
+                        </div>
+
+                        <div class="resume-skills">
+                            {{resume.skills}}
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </body>
+
+
+{% endblock %}

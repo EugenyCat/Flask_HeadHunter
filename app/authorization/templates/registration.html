@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <div class="container">
+            <div class="registration">
+
+                <div class="registration-header">
+                    <h1>Registration</h1>
+                </div>
+
+                <div class="registration-body">
+
+                    <form method='POST'>
+                            {{ form.hidden_tag() }}
+
+                            {% for item in input %}
+                                <div class="registration-input-display">
+                                    {% if item == 'password_rpt' %}
+                                        <div class="registration-input-title">
+                                            Repeat your password:
+                                        </div>
+                                    {% elif item != 'account_type'%}
+                                        <div class="registration-input-title">
+                                            Input your {{item}}:
+                                        </div>
+                                    {% endif %}
+                                    <div class="registration-input">
+                                        {{form.get_form(item)}}
+                                    </div>
+                                </div>
+
+                                <div class="flash-messages-registration">
+                                     {% with messages = get_flashed_messages(True, category_filter=["error_"+item]) %}
+                                        {% if messages %}
+                                            <ul>
+                                            {% for cat, msg in messages %}
+                                                <li class="registration_error">{{msg}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+
+                            {% endfor %}
+
+                            <div class="registration-button">
+                                <button class="registration-button-link" type="submit" value="Enter">Enter</button>
+                            </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

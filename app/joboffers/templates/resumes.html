@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+
+            <div class="search">
+                <form action="{{link_search}}?search={{search}}" method='get'>
+                    <input class="input_search" type='text' name='search' value="{{old_search}}" placeholder="Type to search">
+                    <button class="button_search" type='submit' value='search'>
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+
+        {% if resumes == [] or resumes == None%}
+            <div class="empty-favorites">
+                <h2>Not found</h2>
+            </div>
+        {% else %}
+            {% for resume in resumes %}
+                <div class="container">
+                    <div class="resume-container">
+                        <div class="resume_header">
+                            <a class="link-resume" href="{{url_for('joboffer_blueprint.user_offer', id=resume.offer_id)}}">{{resume.title}}</a>
+
+                            {% if resume.author_id != g.user.get_id() and type != g.user.get_account_type()%}
+                                <form method='post'>
+                                    {% if resume.offer_id in favorites %}
+                                        <button class="liked in_fav"  name="like"   value="{{resume.offer_id}}">
+                                    {% else %}
+                                        <button class="liked out_fav" name="unlike" value="{{resume.offer_id}}">
+                                    {% endif %}
+                                        <i class="fas fa-heart"></i></button>
+                                </form>
+                            {% elif resume.author_id == g.user.get_id() %}
+                                <div class="note-user-offer">
+                                    <i>your offer</i>
+                                </div>
+                            {% else %}
+                            {% endif %}
+                        </div>
+
+
+                        <div class="resume-description">
+                            {{resume.description[:30]}}...
+                        </div>
+                        <div class="resume-skills">
+                            {{resume.skills}}
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </body>
+
+
+{% endblock %}

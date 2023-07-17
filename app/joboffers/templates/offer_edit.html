@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <div class="container">
+
+            <div class="buton-return">
+                <a href="{{session['url']}}"><i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <div class="edit-offer-job">
+                <div class="edit-offer-job-header">
+                    <h1>
+                    Edit{% if current_user.get_account_type() == 0 %}
+                        vacancy
+                    {% else %}
+                        job offer
+                    {% endif %}
+                    </h1>
+                </div>
+
+                <form method="POST">
+                    <div>
+                        Title:
+                        <div class="edit-offer-job-input">
+                            {{form.title(style='width: 600px', value=offer.title)}}
+                        </div>
+
+                        Description:
+                        <div class="edit-offer-job-input">
+                            {{form.description(style='height: 300px;width: 600px', value=offer.description)}}<br><br>
+                        </div>
+
+                        Skills:
+                        <div class="edit-offer-job-input">
+                            {{form.skills(style='width: 600px', value=offer.skills)}}
+                        </div>
+
+                        <div class="edit-offer-job-create">
+                            <button class="edit-offer-job-create-link" type="submit" value="Enter">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+{% endblock %}

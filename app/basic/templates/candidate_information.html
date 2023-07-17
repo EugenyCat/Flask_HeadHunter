@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content  %}
+<pre>
+    <body>
+        {% if candidate == {} %}
+            <p>Candidate isn't found</p>
+        {% else %}
+            <div><p><img src="{{candidate.picture}}"></p></div>
+            <p>Candidate name: {{candidate.name}}</p>
+            <p>Candidate position: {{candidate.position}}</p>
+            <p>Skills: {{candidate.skills}}</p>
+        {% endif %}
+    </body>
+</pre>
+{% endblock %}

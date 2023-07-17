@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <div class="container">
+
+            <div class="user-profile">
+
+                <div class="user-profile-header">
+                    <div class="greeting">
+                        <h1>Hello,
+                         {% if current_user.get_second_name() is not none %}
+                            {{current_user.get_second_name()}}
+                        {% endif %}
+                        {{current_user.get_name()}}</h1>
+                    </div>
+
+                    <div class="user-favorites-button">
+                        <a class="user-favorites-button-link" href="{{url_for('joboffer_blueprint.user_favorites')}}"><i class="fas fa-bookmark"></i> My favorites</a>
+                    </div>
+                </div>
+
+                <div class="user-profile-body">
+                    <div class="user-photo">
+                        <img height=300px width=300px src="{{current_user.get_avatar()}}">
+                    </div>
+
+                    <div class="user-person-data-display">
+                        <div class="user-person-data">
+                            {% for item in current_user.get_person_data().keys() %}
+                                <b>{{item.replace('_', ' ')}}:</b>
+                                {% if current_user.get_person_data()[item] is not none %}
+                                    {{current_user.get_person_data()[item]}}
+                                {% else %}
+                                    is not specified
+                                {% endif %}
+                                <p>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="edit-logout-button">
+                            <a class="edit-logout-button-link" href="{{url_for('authorization_blueprint.profile_edit')}}">Edit</a>
+                        </div>
+
+                        <div class="edit-logout-button">
+                            <a class="edit-logout-button-link" href="{{url_for('authorization_blueprint.logout')}}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-own-offers">
+                    <hr>
+                    <div class="user-own-offers-header">
+                        <div class="title-user-offers">
+                            <h2>
+                                {% if current_user.get_account_type() == 0 %}
+                                    My resumes
+                                {% else %}
+                                    My job offers
+                                {% endif %}
+                            </h2>
+                        </div>
+
+                        <div class="add-offer-button">
+                            <a class="add-offer-button-link" href="{{url_for('joboffer_blueprint.add_offer')}}"><i class="fas fa-plus" aria-hidden="true"></i> Add new</a>
+                        </div>
+                    </div>
+
+                    <div class="list-user-offers-block">
+                        <div class="list-user-offers">
+                            {% if user_offers == [] or user_offers == None%}
+                                <div class="user-offers-empty">
+                                    You don't have any
+                                    {% if current_user.get_account_type() == 0 %}
+                                        resumes
+                                    {% else %}
+                                        offers
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                {% for offer in user_offers %}
+                                    <div class="list-user-offers-display">
+                                        <div class="container-userprofile-offer-title">
+                                            <a class="userprofile-offer-title" href="{{url_for('joboffer_blueprint.user_offer', id=offer['id'])}}">{{offer['title']}}</a>
+                                        </div>
+
+                                        <div class="list-user-offers-buttons">
+                                            <div class="container-button-offer-edit">
+                                                <a class="button-offer-edit" href="{{url_for('joboffer_blueprint.offer_edit', id=offer['id'])}}"><i class="fas fa-edit"></i></a>
+                                            </div>
+
+                                            <div class="container-button-offer-delete">
+                                                <form class="button-offer-delete" method='post'><button name="delete" value="{{offer['id']}}" class="delete">Delete</button></form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+{% endblock %}

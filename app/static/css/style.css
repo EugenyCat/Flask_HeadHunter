@@ -1,0 +1,636 @@
+/* all elements */
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    /*
+    box-sizing - type sizes of height and weight of element
+
+    content-box - only count element + border (100 px el + 2 px border)
+    border-box - element + border are union (100 px in common)
+    */
+    /*
+    :before - input content before element
+    :after - input content after element
+    */
+}
+
+
+/* <body> */
+body {
+    margin: 0;  /* space near object from 4 sides */
+    font-family: 'Montserrat', sans-serif;  /*font*/
+
+    font-size: 15px;    /*size of letters of font*/
+    line-height: 1.6;   /*height between line*/
+    color: #333         /*color*/
+}
+
+
+/* all kind of headlines */
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+}
+
+/* div class=container */
+.container {
+    width: 100%;        /* width of object is 100% of screen  */
+    max-width: 1200px;  /* max value width */
+    margin: 0 auto;     /* space near object from 4 sides */
+}
+
+/* div class=intro */
+.intro {
+    width: 100%;    /* all width of screen */
+    height: 15vh;   /* vh ~ 1% height from window of browser */
+    background: url("/static/files/fone.jpg") center no-repeat; /* background picture */
+    -webkit-background-size: cover;
+    background-size: cover; /* cover - scales a picture to the smallest possible size to fill the container */
+}
+
+
+/* <header> */
+.header {
+    padding-top: 30px;  /* space above of object */
+    width: 100%;        /* width 100% of screen */
+    position: absolute; /* sets how an element is positioned in a document */
+    /*
+    static - the normal flow of the document
+    relative - the normal flow of the document, and then offset relative to itself based on the values of top, right, bottom, and left
+    absolute - removed from the normal document flow, and no space is created for the element in the page layout
+     */
+
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;  /* the z-order of a positioned element */
+}
+
+/* div class=header__inner */
+.header__inner{
+    display: flex;  /* ets whether an element is treated as a block or inline box */
+    /*
+        block
+        inline-block
+        none
+        flex
+        grid
+     */
+    justify-content: space-between; /* how the browser distributes space between and around content items */
+    /*
+        start
+        center
+        space-between
+        space-around
+        space-evenly
+     */
+    align-items: center; /* as justify-content but horizontal*/
+    /*
+        stretch
+        center
+        start
+        end
+     */
+}
+
+
+/* div class=header__logo */
+.header__logo{
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+
+/* div class=nav */
+.nav{
+    font-size: 18px;
+    text-transform: uppercase; /*  property specifies how to capitalize an element's text */
+    /*
+           capitalize - the first letter of each word to uppercase
+           uppercase
+           lowercase
+           none
+     */
+
+}
+
+
+/* div class=nav-link */
+.nav-link{
+    display: inline-block;
+    vertical-align: top; /* vertical alignment */
+    /*
+        baseline
+        top
+        middle
+        bottom
+        sub
+        text-top
+     */
+    margin: 0 15px;
+    position: relative;
+
+    color: white;
+    text-decoration: none;
+
+    transition: color .1s linear;   /* time change of color*/
+}
+
+
+
+.nav-link:after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+
+    background-color: #fce38a;
+    opacity: 0; /* sets the opacity of an element */
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+
+    transition: opacity .1s linear;
+}
+
+.nav-link:hover{
+    color: #fce38a;
+}
+
+.nav-link:hover:after{
+    opacity: 1;
+}
+
+
+.search{
+    padding: 0px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: #2f3640;
+    height: 40px;
+    width: 300px;
+    border-radius: 40px;
+
+    display: inline-block;  /* ets whether an element is treated as a block or inline box */
+    justify-content: center; /* how the browser distributes space between and around content items */
+    align-items: center; /* as justify-content but horizontal*/
+}
+
+.button_search{
+    color: #1da1f3;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.input_search{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    color: white;
+    font-size: 16px;
+    transition: .4s;
+    line-height: 40px;
+    width: 240px;
+    padding-left: 20px;
+
+}
+
+
+.empty{
+    padding: 0px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+}
+
+.user-favorite-resume-block,
+.resume-container{
+    background-color: cornflowerblue;
+    width: 400px;
+    border-radius: 30px;
+    transform: translate(-50%, 50%);
+    position: relative;
+    top: 0px;
+    left: 50%;
+    height: 150px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
+.user-favorite-resume-block-header,
+.resume_header{
+    display: flex;  /* ets whether an element is treated as a block or inline box */
+    justify-content: center; /* how the browser distributes space between and around content items */
+    align-items: center; /* as justify-content but horizontal*/
+}
+
+.link-resume{
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.link-resume:hover{
+    color: #fce38a;
+    transition: color .3s linear;
+}
+
+.resume-description {
+    font-size: 24px;
+}
+
+.resume-skills{
+    font-style: italic;
+}
+
+
+
+.liked{
+    display: inline-block;
+    border-radius: 10px;
+    line-height: 1.5;
+    margin-left: 10px;
+}
+
+.out_fav{
+    color: black;
+    border: 1px solid blue;
+}
+
+.out_fav:hover{
+    opacity: .8;
+    color: red;
+    cursor: pointer;
+}
+
+.in_fav{
+    color: red;
+    cursor: pointer;
+}
+
+.in_fav:hover{
+    opacity: .8;
+    color: black;
+    cursor: pointer;
+}
+
+
+
+
+.buton-return {
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+    padding: 60px 60px 60px 0;
+    color: black;
+
+    transition: color .1s linear;
+}
+
+.buton-return-favorites:hover,
+.buton-return:hover {
+    opacity: .8;
+    color: white;
+}
+
+
+.user-resume {
+    background-color: cornflowerblue;
+    border-radius: 20px;
+    height: 400px;
+    padding: 30px;
+}
+
+
+.user-resume-content {
+    font-size: 18px;
+}
+
+.user-resume-slill_list,
+.user-resume-slill_list:before{
+    content: "Skills: ";
+    font-style: italic;
+}
+
+.edit-offer-job,
+.add-offer-job,
+.registration,
+.authorization,
+.user-profile {
+    background-color: aliceblue;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 700px;
+
+    position: absolute;
+    top: 20%;
+    left: 30%;
+
+}
+
+.authorization-header,
+.registration-header,
+.user-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+
+.user-favorites-button {
+    color: white;
+    background-color: brown;
+    border-radius: 5px;
+    padding: 5px;
+
+    transition: opacity .2s linear;
+}
+
+.user-favorites-button:hover {
+    opacity: .8;
+}
+
+.user-favorites-button-link{
+    text-decoration: none;
+    color: white;
+
+    transition: color .2s linear;
+}
+
+.user-favorites-button-link:hover {
+    color: beige;
+}
+
+.user-photo {
+    border-radius: 60px;
+}
+
+
+.user-profile-body {
+    display: flex;
+    justify-content: start;
+    align-items: stretch;
+}
+
+.user-person-data-display {
+    padding-left: 30px;
+}
+
+.edit-logout-button{
+    text-transform: uppercase;
+    width: 80px;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #333333;
+    text-align: center;
+    border-radius: 10px;
+ }
+
+.edit-logout-button-link {
+    color: white;
+    text-decoration: none;
+
+    transition: opacity .2s linear;
+}
+
+.edit-logout-button:hover {
+    opacity: .8;
+ }
+
+
+.user-offers-empty {
+    font-style: italic;
+}
+
+.list-user-offers-buttons,
+.user-own-offers-header {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.add-offer-button {
+    padding-left: 10px;
+}
+
+.add-offer-button-link {
+    color: black;
+    text-decoration: none;
+
+    transition: color .2s linear;
+}
+
+.add-offer-button-link:hover {
+    color: black;
+    text-decoration: underline;
+    opacity: .8;
+}
+
+
+
+.registration-input-title,
+.authorization-input-title {
+    width: 170px;
+}
+
+
+
+.add-offer-job-input,
+.edit-offer-job-input,
+.edit-profile-input,
+.registration-input,
+.authorization-input {
+    margin-bottom: 15px;
+}
+
+.authorization-rememberme-display{
+    display: flex;
+    justify-content: start;
+}
+
+.flash-messages-registration,
+.flash-messages-authorization {
+    background-color: orangered;
+}
+
+
+
+.add-offer-job-create-link,
+.edit-offer-job-create-link,
+.user-profile-enter-link,
+.registration-button-link,
+.authorization-button-link,
+.registration-button-link
+{
+    background-color: #333333;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+
+    transition: opacity .2s linear;
+}
+
+.add-offer-job-create-link:hover,
+.edit-offer-job-create-link:hover,
+.user-profile-enter-link:hover,
+.registration-button-link:hover,
+.authorization-button-link:hover,
+.registration-button-link:hover {
+    opacity: .8;
+    text-decoration: underline;
+}
+
+
+.list-user-offers-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 30px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.container-button-offer-edit{
+    padding-top: 1px;
+    margin-right: 10px;
+    background-color: #333333;
+    border-radius: 10px;
+    height: 35px;
+    width: 35px;
+    align-content: center;
+
+    transition: opacity .2s linear;
+}
+
+.container-button-offer-edit:hover{
+    opacity: .8;
+}
+
+.button-offer-edit{
+    color: white;
+    align-items: center;
+    padding: 8px;
+    font-size: 20px;
+
+    transition: color .2s linear;
+
+}
+
+button-offer-edit:hover{
+    color: #fce38a;
+}
+
+.delete-favorite,
+.delete{
+    display: inline-block;
+    padding: 4px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    user-select: none;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: black;
+    background-color: red;
+    cursor: pointer;
+
+    transition: opacity .2s linear;
+}
+
+.delete-favorite:hover,
+.delete:hover{
+    opacity: .5;
+    cursor: pointer;
+}
+
+
+.userprofile-offer-title{
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.userprofile-offer-title:hover{
+    text-decoration: underline;
+}
+
+
+.empty-favorites{
+    padding-top: 100px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.buton-return-favorites {
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    transition: color .1s linear;
+}
+
+
+
+.container-main-page {
+    width: 80%;    /* all width of screen */
+    height: 70vh;   /* vh ~ 1% height from window of browser */
+    background: url("/static/files/main_picture.jpg") center no-repeat; /* background picture */
+    -webkit-background-size: cover;
+    background-size: cover; /* cover - scales a picture to the smallest possible size to fill the container */
+    opacity: .6;
+    border-radius: 20px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    padding: 50px;
+}
+
+.biggest-phrase{
+    font-size: 70px;
+    text-align: center;
+    color: black;
+    margin-top: 0px;
+}
+
+.another-big-phrase{
+    font-size: 50px;
+    text-align: center;
+    color: black;
+}

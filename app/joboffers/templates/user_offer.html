@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="buton-return">
+            <a href="{{session['url']}}"><i class="fas fa-arrow-left"></i></a>
+        </div>
+
+        <div class="user-resume">
+
+            <div class="user-resume-header">
+                <div class="user-resume-title">
+                    <h1>{{user_offer[0]['title']}}</h1>
+                </div>
+            </div>
+
+            <div class="user-resume-content">
+
+                <div class="user-resume-description">
+                    {{user_offer[0]['offer_description']}}
+                </div>
+
+                <div class="user-resume-slill_list">
+                    {{user_offer[0]['slill_list']}}
+                </div>
+
+                <div class="user-resume-name">
+                    {{user_offer[0]['second_name'] or ''}} {{user_offer[0]['name']}}
+                </div>
+
+                <div class="user-resume-county">
+                    {{user_offer[0]['country'] or ''}} {{user_offer[0]['city'] or ''}}
+                </div>
+
+                <div class="user-resume-phone_number">
+                    {{user_offer[0]['phone_number'] or ''}}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
